@@ -1,0 +1,83 @@
+<template>
+  <div class="slds-box slds-theme_shade">
+    <lightning-layout>
+
+    <lightning-layout-item size="6">
+      <!--<div class="comboboxprops">-->
+        <lightning-combobox
+            name="listView"
+            label="List View"
+            value={currentListView}
+            placeholder="Select List View"
+            options={listView}
+            onchange={updateListView}>
+        </lightning-combobox>
+      <!--</div>-->
+    </lightning-layout-item>
+    &nbsp;&nbsp;&nbsp;
+    <div class="slds-var-m-top_large slds-var-p-right_medium">
+    <lightning-layout-item size="4">
+      <lightning-button label="Add Fields" onclick={showModal}> </lightning-button>
+    </lightning-layout-item>
+    </div>
+  </lightning-layout>
+  </div> 
+  <div class="datatableprops">
+      <lightning-datatable 
+          key-field="id"
+          data={contactList}
+          columns={columnList}>
+      </lightning-datatable>
+  </div>
+
+  <div class="slds-box slds-theme_shade" style="text-align: center;">
+    <lightning-button label="Previous" onclick={handlePreviousPage}></lightning-button>
+    &nbsp;&nbsp;&nbsp;
+    <lightning-button label="Next" onclick={handleNextPage}></lightning-button>
+  </div>
+<!--
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-tree-grid
+            columns={columnList}
+            data={contactList}
+            key-field="name"
+        ></lightning-tree-grid>
+    </div>
+  -->
+    <template if:true={openModal}>
+        <lightning-card>
+            <div class="slds-modal slds-fade-in-open slds-backdrop">  
+                <div class="slds-modal__container">  
+                      <!------HEADER Section-->  
+                    <div class="slds-modal__header">  
+                        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+                          variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+                        </lightning-button-icon>  
+                    </div>  
+                      <!------Body Section-->  
+                    <lightning-dual-listbox class="contentClass" name="fields"
+                        label="Select Fields"
+                        source-label="Available"
+                        selected-label="Selected"
+                        field-level-help="Select Fields"
+                        options={contactFieldList}
+                        value={selectedFieldList}
+                        onchange={updateSelectedFields}>
+                    </lightning-dual-listbox>
+                  <!--<div class="slds-box contentClass" >
+                      <p>Selected Fields are: {selected}</p>
+                  </div>-->
+                      <!------Footer Section-->  
+                    <div class="slds-modal__footer">  
+                        <lightning-button label="close" variant="brand" onclick={closeModal}>  
+                        </lightning-button>
+                        &nbsp;&nbsp;&nbsp;
+                        <lightning-button label="save" variant="brand" onclick={saveListView}>  
+                        </lightning-button>  
+                    </div>  
+                </div>  
+            </div> 
+        </lightning-card>
+             
+    </template>
+</template>

@@ -1,0 +1,13 @@
+.contentClass{
+    background: white;
+    padding: 10px;
+}
+
+.datatableprops{
+    /*height: 150px !important;*/
+}
+
+.comboboxprops{
+    width: 300px;
+    padding-bottom: 5px;
+}
